@@ -2,14 +2,7 @@ import { NextResponse } from "next/server";
 import { getDB } from "@/lib/db";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
-
-const contactSchema = z.object({
-    firstName: z.string().min(1),
-    lastName: z.string().min(1),
-    email: z.string().email(),
-    subject: z.string().min(1),
-    message: z.string().min(1),
-});
+import { contactSchema } from "@/lib/validations";
 
 export async function POST(req: Request) {
     try {
@@ -28,6 +21,12 @@ export async function POST(req: Request) {
             { status: 201 }
         );
     } catch (error) {
+        if (error instanceof z.ZodError) {
+            return NextResponse.json(
+                { message: "Invalid input", errors: error.errors },
+                { status: 400 }
+            );
+        }
         console.error("Contact error:", error);
         return NextResponse.json(
             { message: "Internal server error" },

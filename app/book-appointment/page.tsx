@@ -11,7 +11,10 @@ export default function BookAppointmentPage() {
     const [selectedService, setSelectedService] = useState("Physiotherapy");
     const [selectedTherapist, setSelectedTherapist] = useState("Dr. Sarah Smith");
     const [selectedTime, setSelectedTime] = useState("10:00 AM");
-    const [selectedDate, setSelectedDate] = useState("Oct 24, 2023");
+    const [selectedDate, setSelectedDate] = useState(() => {
+        const today = new Date();
+        return today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    });
 
     // Form loading/error
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -242,7 +245,7 @@ export default function BookAppointmentPage() {
                             {/* Calendar (Static for visual) */}
                             <div className="w-full md:w-1/2">
                                 <div className="mb-4 flex items-center justify-between">
-                                    <h3 className="text-lg font-bold text-text-light dark:text-white">October 2023</h3>
+                                    <h3 className="text-lg font-bold text-text-light dark:text-white">{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</h3>
                                     <div className="flex gap-2 text-text-light dark:text-white">
                                         <button className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-background-light dark:hover:bg-background-dark transition-colors">
                                             <span className="material-symbols-outlined text-sm">chevron_left</span>

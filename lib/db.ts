@@ -10,7 +10,7 @@ export interface Env {
  */
 export async function getDB(): Promise<D1Database> {
     const { env } = await getCloudflareContext();
-    return env.DB;
+    return (env as unknown as Env).DB;
 }
 
 /**

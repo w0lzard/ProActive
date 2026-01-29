@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { appointmentSchema, type AppointmentFormData } from "@/lib/validations";
+import { guestBookingSchema, type GuestBookingFormData } from "@/lib/validations";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useState } from "react";
@@ -16,11 +16,11 @@ export default function AppointmentsPage() {
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm<AppointmentFormData>({
-        resolver: zodResolver(appointmentSchema),
+    } = useForm<GuestBookingFormData>({
+        resolver: zodResolver(guestBookingSchema),
     });
 
-    const onSubmit = async (data: AppointmentFormData) => {
+    const onSubmit = async (data: GuestBookingFormData) => {
         setIsSubmitting(true);
         setSubmitStatus("idle");
 

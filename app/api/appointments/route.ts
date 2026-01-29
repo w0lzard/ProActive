@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import { getDB } from "@/lib/db";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
+import { appointmentSchema } from "@/lib/validations";
 
 interface Appointment {
     id: string;
@@ -16,24 +17,17 @@ interface Appointment {
     createdAt: string;
 }
 
-const appointmentSchema = z.object({
-    service: z.string(),
-    therapist: z.string(),
-    date: z.string(),
-    time: z.string(),
-});
-
 export async function POST(req: Request) {
     try {
         const session = await getServerSession(authOptions);
 
-        if (!session || !session.user) {
+        if (!session?.user?.id) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
 
         const body = await req.json();
         const { service, therapist, date, time } = appointmentSchema.parse(body);
-        const userId = (session.user as any).id;
+        const userId = session.user.id;
         const id = uuidv4();
 
         const db = await getDB();
@@ -47,6 +41,12 @@ export async function POST(req: Request) {
             { status: 201 }
         );
     } catch (error) {
+        if (error instanceof z.ZodError) {
+            return NextResponse.json(
+                { message: "Invalid input", errors: error.errors },
+                { status: 400 }
+            );
+        }
         console.error("Booking error:", error);
         return NextResponse.json(
             { message: "Internal server error" },
@@ -55,15 +55,15 @@ export async function POST(req: Request) {
     }
 }
 
-export async function GET(req: Request) {
+export async function GET() {
     try {
         const session = await getServerSession(authOptions);
 
-        if (!session || !session.user) {
+        if (!session?.user?.id) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
 
-        const userId = (session.user as any).id;
+        const userId = session.user.id;
         const db = await getDB();
 
         const { results: appointments } = await db
