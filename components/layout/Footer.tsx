@@ -12,9 +12,9 @@ export default function Footer() {
                             <Image
                                 src="/logo.png"
                                 alt="ProActive Physiotherapy & Rehabilitation Centre"
-                                width={270}
-                                height={68}
-                                className="h-[66px] w-auto"
+                                width={540}
+                                height={135}
+                                className="h-[132px] w-auto"
                             />
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">

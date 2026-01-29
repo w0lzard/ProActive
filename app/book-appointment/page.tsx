@@ -9,7 +9,7 @@ export default function BookAppointmentPage() {
     const { data: session, status } = useSession();
     const router = useRouter();
     const [selectedService, setSelectedService] = useState("Physiotherapy");
-    const [selectedTherapist, setSelectedTherapist] = useState("Dr. Sarah Jenkins");
+    const [selectedTherapist, setSelectedTherapist] = useState("Dr. Pronita Singh");
     const [selectedTime, setSelectedTime] = useState("10:00 AM");
     const [selectedDate, setSelectedDate] = useState(() => {
         const today = new Date();
@@ -55,7 +55,7 @@ export default function BookAppointmentPage() {
 
     // Therapist Image Logic
     const getTherapistImage = (name: string) => {
-        if (name === "Dr. Sarah Jenkins") return "/dr-sarah-jenkins.jpg";
+        if (name === "Dr. Pronita Singh") return "/dr-sarah-jenkins.jpg";
         return "";
     };
 
@@ -170,10 +170,10 @@ export default function BookAppointmentPage() {
                                     readOnly
                                 />
                                 <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
-                                    <Image fill style={{ objectFit: "cover" }} src="/dr-sarah-jenkins.jpg" alt="Dr. Sarah Jenkins" />
+                                    <Image fill style={{ objectFit: "cover" }} src="/dr-sarah-jenkins.jpg" alt="Dr. Pronita Singh" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-text-light dark:text-white">Dr. Sarah Jenkins</h3>
+                                    <h3 className="font-bold text-text-light dark:text-white">Dr. Pronita Singh</h3>
                                     <p className="text-sm text-gray-600 dark:text-gray-400">Senior Physiotherapist</p>
                                 </div>
                                 <div className="ml-auto text-primary">

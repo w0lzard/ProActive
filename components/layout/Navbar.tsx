@@ -19,9 +19,9 @@ export default function Navbar() {
                         <Image
                             src="/logo.png"
                             alt="ProActive Physiotherapy & Rehabilitation Centre"
-                            width={300}
-                            height={75}
-                            className="h-[72px] w-auto"
+                            width={600}
+                            height={150}
+                            className="h-36 w-auto"
                             priority
                         />
                     </Link>
