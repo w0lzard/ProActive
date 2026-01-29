@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { useSession, signOut } from "next-auth/react";
@@ -14,9 +15,15 @@ export default function Navbar() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center">
                     {/* LOGO – LEFT */}
-                    <Link href="/" className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-4xl text-primary">health_and_safety</span>
-                        <span className="text-xl font-bold tracking-tight text-text-light dark:text-white">ProActive</span>
+                    <Link href="/" className="flex items-center">
+                        <Image
+                            src="/logo.png"
+                            alt="ProActive Physiotherapy & Rehabilitation Centre"
+                            width={200}
+                            height={50}
+                            className="h-12 w-auto"
+                            priority
+                        />
                     </Link>
 
                     {/* RIGHT SIDE – PUSHED USING ml-auto */}

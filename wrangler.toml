@@ -1,10 +1,29 @@
 name = "proactive-physiotherapy"
+main = ".open-next/worker.js"
 compatibility_date = "2025-01-01"
-compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".open-next/assets"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+
+# Static assets configuration
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
 
 # D1 Database binding
 [[d1_databases]]
 binding = "DB"
 database_name = "proactive-db"
 database_id = "2e1d6e0c-86a0-424f-a04c-ca6db8d5e30f"
+
+# Self-reference for middleware
+[[services]]
+binding = "WORKER_SELF_REFERENCE"
+service = "proactive-physiotherapy"
+
+# Custom domain routes
+[[routes]]
+pattern = "www.drpronitasinghphysio.com/*"
+zone_name = "drpronitasinghphysio.com"
+
+[[routes]]
+pattern = "drpronitasinghphysio.com/*"
+zone_name = "drpronitasinghphysio.com"

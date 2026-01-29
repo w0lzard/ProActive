@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "pages:build": "npx @opennextjs/cloudflare",
-    "preview": "npm run pages:build && npx wrangler pages dev",
-    "deploy": "npm run pages:build && npx wrangler pages deploy",
+    "preview": "npm run pages:build && npx wrangler dev",
+    "deploy": "npm run pages:build && npx wrangler deploy",
     "d1:create": "npx wrangler d1 create proactive-db",
     "d1:migrate": "npx wrangler d1 execute proactive-db --file=migrations/0001_init.sql",
     "d1:migrate:local": "npx wrangler d1 execute proactive-db --file=migrations/0001_init.sql --local"
@@ -30,13 +30,13 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240903.0",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/uuid": "^10.0.0",
     "@opennextjs/cloudflare": "^0.5.0",
     "@tailwindcss/forms": "^0.5.7",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uuid": "^10.0.0",
     "autoprefixer": "^10.0.1",
     "esbuild": "^0.27.2",
     "eslint": "^8",
@@ -44,6 +44,6 @@
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "typescript": "^5",
-    "wrangler": "^3.80.0"
+    "wrangler": "^4.61.1"
   }
 }

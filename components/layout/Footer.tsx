@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
     return (
@@ -7,9 +8,14 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div>
-                        <div className="flex items-center gap-2 mb-6">
-                            <span className="material-symbols-outlined text-4xl text-primary">health_and_safety</span>
-                            <span className="text-xl font-bold tracking-tight text-text-light dark:text-white">ProActive</span>
+                        <div className="flex items-center mb-6">
+                            <Image
+                                src="/logo.png"
+                                alt="ProActive Physiotherapy & Rehabilitation Centre"
+                                width={180}
+                                height={45}
+                                className="h-11 w-auto"
+                            />
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
                             Empowering you to move better, feel better, and live better through expert physiotherapy care.
