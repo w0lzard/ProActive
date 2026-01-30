@@ -257,7 +257,18 @@ export default function BookAppointmentPage() {
                             </div>
                             <div className="col-span-1">
                                 <label className="block text-sm font-bold mb-2 text-text-light dark:text-white">Phone Number</label>
-                                <input className="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark px-4 py-2.5 text-sm focus:border-primary focus:ring-primary dark:text-white" placeholder="(555) 123-4567" type="tel" />
+                                <input
+                                    className="w-full rounded-lg border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark px-4 py-2.5 text-sm focus:border-primary focus:ring-primary dark:text-white"
+                                    placeholder="9876543210"
+                                    type="tel"
+                                    maxLength={10}
+                                    pattern="[0-9]{10}"
+                                    title="Please enter a 10-digit phone number"
+                                    onInput={(e) => {
+                                        const target = e.target as HTMLInputElement;
+                                        target.value = target.value.replace(/[^0-9]/g, '').slice(0, 10);
+                                    }}
+                                />
                             </div>
                             <div className="col-span-1 md:col-span-2">
                                 <label className="block text-sm font-bold mb-2 text-text-light dark:text-white">Reason for Visit (Optional)</label>
