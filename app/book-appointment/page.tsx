@@ -91,26 +91,26 @@ export default function BookAppointmentPage() {
             </div>
 
             {/* Progress Stepper */}
-            <div className="mb-10 overflow-x-auto">
-                <div className="flex min-w-max items-center gap-4 text-sm font-medium">
-                    <div className="flex items-center gap-2 text-primary">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white text-xs font-bold">1</span>
-                        <span>Service</span>
+            <div className="mb-10 lg:mb-12">
+                <div className="flex items-center justify-between max-w-2xl">
+                    <div className="flex flex-col items-center gap-2 group">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20">1</span>
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-primary">Service</span>
                     </div>
-                    <div className="h-px w-8 bg-gray-300 dark:bg-gray-700"></div>
-                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full border border-current text-xs font-bold">2</span>
-                        <span>Therapist</span>
+                    <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700 mx-2 sm:mx-4 mt-5"></div>
+                    <div className="flex flex-col items-center gap-2">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-200 dark:border-gray-700 text-gray-400 text-sm font-bold">2</span>
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400">Staff</span>
                     </div>
-                    <div className="h-px w-8 bg-gray-300 dark:bg-gray-700"></div>
-                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full border border-current text-xs font-bold">3</span>
-                        <span>Time</span>
+                    <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700 mx-2 sm:mx-4 mt-5"></div>
+                    <div className="flex flex-col items-center gap-2">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-200 dark:border-gray-700 text-gray-400 text-sm font-bold">3</span>
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400">Time</span>
                     </div>
-                    <div className="h-px w-8 bg-gray-300 dark:bg-gray-700"></div>
-                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full border border-current text-xs font-bold">4</span>
-                        <span>Details</span>
+                    <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700 mx-2 sm:mx-4 mt-5"></div>
+                    <div className="flex flex-col items-center gap-2">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-200 dark:border-gray-700 text-gray-400 text-sm font-bold">4</span>
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400">Info</span>
                     </div>
                 </div>
             </div>
@@ -257,10 +257,10 @@ export default function BookAppointmentPage() {
                                                 onClick={() => !isPast && handleDateSelect(day)}
                                                 disabled={isPast}
                                                 className={`relative rounded-full py-2 transition-all ${isSelected
-                                                        ? "bg-primary text-white font-bold shadow-md"
-                                                        : isPast
-                                                            ? "text-gray-200 dark:text-gray-700 cursor-not-allowed"
-                                                            : "hover:bg-background-light dark:hover:bg-background-dark text-text-light dark:text-white"
+                                                    ? "bg-primary text-white font-bold shadow-md"
+                                                    : isPast
+                                                        ? "text-gray-200 dark:text-gray-700 cursor-not-allowed"
+                                                        : "hover:bg-background-light dark:hover:bg-background-dark text-text-light dark:text-white"
                                                     }`}
                                             >
                                                 {day}
