@@ -48,7 +48,7 @@ export default function Footer() {
                         <ul className="space-y-3 text-gray-600 dark:text-gray-400">
                             <li className="flex items-start gap-2">
                                 <span className="material-symbols-outlined text-lg text-primary mt-0.5">location_on</span>
-                                <span>Shop no-26, Ground Floor,<br />City square complex, Square, Sai Rd,<br />opposite to Petrol Pump, Baddi,<br />Himachal Pradesh 173205</span>
+                                <span>Showroom no-26, Ground Floor,<br />City square complex, Sai Rd,<br />opposite to Petrol Pump, Baddi,<br />Himachal Pradesh 173205</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <span className="material-symbols-outlined text-lg text-primary">call</span>

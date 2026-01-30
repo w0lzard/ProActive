@@ -120,18 +120,18 @@ export default function BookAppointmentPage() {
 
                             {/* Card 2 */}
                             <div
-                                onClick={() => setSelectedService("Massage Therapy")}
-                                className={`group relative cursor-pointer overflow-hidden rounded-xl border-2 p-5 transition-all ${selectedService === "Massage Therapy" ? "border-primary bg-primary/10" : "border-gray-200 dark:border-gray-700 bg-white dark:bg-surface-dark hover:border-primary/50"}`}
+                                onClick={() => setSelectedService("Manual Therapy")}
+                                className={`group relative cursor-pointer overflow-hidden rounded-xl border-2 p-5 transition-all ${selectedService === "Manual Therapy" ? "border-primary bg-primary/10" : "border-gray-200 dark:border-gray-700 bg-white dark:bg-surface-dark hover:border-primary/50"}`}
                             >
-                                {selectedService === "Massage Therapy" && (
+                                {selectedService === "Manual Therapy" && (
                                     <div className="absolute right-3 top-3 text-primary">
                                         <span className="material-symbols-outlined filled">check_circle</span>
                                     </div>
                                 )}
-                                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full ${selectedService === "Massage Therapy" ? "bg-primary/20 text-primary-dark" : "bg-background-light dark:bg-background-dark text-gray-500"}`}>
+                                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full ${selectedService === "Manual Therapy" ? "bg-primary/20 text-primary-dark" : "bg-background-light dark:bg-background-dark text-gray-500"}`}>
                                     <span className="material-symbols-outlined text-2xl">massage</span>
                                 </div>
-                                <h3 className="font-bold text-lg mb-1 text-text-light dark:text-white">Massage Therapy</h3>
+                                <h3 className="font-bold text-lg mb-1 text-text-light dark:text-white">Manual Therapy</h3>
                                 <p className="text-sm text-gray-600 dark:text-gray-400">Deep tissue release and relaxation.</p>
                             </div>
 

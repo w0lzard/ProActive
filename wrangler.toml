@@ -27,3 +27,7 @@ zone_name = "drpronitasinghphysio.com"
 [[routes]]
 pattern = "drpronitasinghphysio.com/*"
 zone_name = "drpronitasinghphysio.com"
+
+# Environment variables (secrets should be set via wrangler secret put)
+[vars]
+# RESEND_API_KEY should be set as a secret using: npx wrangler secret put RESEND_API_KEY

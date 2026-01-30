@@ -35,7 +35,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-text-light dark:text-white mb-1">Our Location</h3>
-                                        <p className="text-gray-600 dark:text-gray-400">Shop no-26, Ground Floor,<br />City square complex, Square, Sai Rd,<br />opposite to Petrol Pump, Baddi,<br />Himachal Pradesh 173205</p>
+                                        <p className="text-gray-600 dark:text-gray-400">Showroom no-26, Ground Floor,<br />City square complex, Sai Rd,<br />opposite to Petrol Pump, Baddi,<br />Himachal Pradesh 173205</p>
                                     </div>
                                 </div>
 

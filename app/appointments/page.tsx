@@ -99,7 +99,7 @@ export default function AppointmentsPage() {
                                 <option value="Manual Therapy">Manual Therapy</option>
                                 <option value="Sports Rehab">Sports Rehabilitation</option>
                                 <option value="Post-Op Care">Post-Op Care</option>
-                                <option value="Massage Therapy">Massage Therapy</option>
+                                <option value="Manual Therapy">Manual Therapy</option>
                             </select>
                             {errors.service && <span className="text-sm text-red-500">{errors.service.message}</span>}
                         </div>
