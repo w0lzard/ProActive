@@ -76,105 +76,58 @@ export default function Navbar() {
                             </div>
                         )}
 
-                        {/* MOBILE MENU TOGGLE */}
+                        {/* MOBILE MENU */}
                         <button
-                            className="md:hidden p-2 text-text-light dark:text-text-dark rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                            className="md:hidden p-2 text-text-light dark:text-text-dark"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            aria-label="Toggle menu"
                         >
-                            <span className="material-symbols-outlined text-2xl">
-                                {isMobileMenuOpen ? 'close' : 'menu'}
-                            </span>
+                            <span className="material-symbols-outlined">menu</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            {/* MOBILE MENU OVERLAY */}
-            <div
-                className={`fixed inset-0 z-50 md:hidden bg-surface-light/98 dark:bg-surface-dark/98 backdrop-blur-md transition-all duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-                    }`}
-            >
-                <div className="flex flex-col h-full">
-                    {/* Mobile Header */}
-                    <div className="flex items-center justify-between px-4 h-16 border-b border-gray-200 dark:border-gray-800">
-                        <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                            <Image
-                                src="/logo.png"
-                                alt="Logo"
-                                width={120}
-                                height={30}
-                                className="h-10 w-auto"
-                            />
-                        </Link>
-                        <button
-                            className="p-2 text-text-light dark:text-text-dark"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            <span className="material-symbols-outlined text-3xl">close</span>
-                        </button>
-                    </div>
+            {/* MOBILE MENU */}
+            {isMobileMenuOpen && (
+                <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-surface-light dark:bg-surface-dark">
+                    <div className="space-y-1 px-4 pb-3 pt-2">
+                        <Link href="/" className="block py-2 text-base font-medium hover:text-primary">Home</Link>
+                        <Link href="/services" className="block py-2 text-base font-medium hover:text-primary">Services</Link>
+                        <Link href="/about" className="block py-2 text-base font-medium hover:text-primary">About</Link>
+                        <Link href="/contact" className="block py-2 text-base font-medium hover:text-primary">Contact</Link>
 
-                    {/* Mobile Nav Links */}
-                    <nav className="flex-1 overflow-y-auto py-8 px-6 space-y-6">
-                        {[
-                            { name: 'Home', href: '/' },
-                            { name: 'Services', href: '/services' },
-                            { name: 'About', href: '/about' },
-                            { name: 'Contact', href: '/contact' },
-                            ...(session ? [{ name: 'My Bookings', href: '/my-bookings' }] : []),
-                        ].map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="block text-2xl font-bold text-text-light dark:text-white hover:text-primary transition-colors"
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
-                    </nav>
-
-                    {/* Mobile Footer Area */}
-                    <div className="p-6 border-t border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/50">
                         {session ? (
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                                        {session.user?.name?.[0]}
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-bold text-text-light dark:text-white">{session.user?.name}</p>
-                                        <button
-                                            onClick={() => {
-                                                setIsMobileMenuOpen(false);
-                                                signOut({ callbackUrl: "/" });
-                                            }}
-                                            className="text-xs text-red-500 font-medium"
-                                        >
-                                            Sign Out
-                                        </button>
-                                    </div>
+                            <>
+                                <Link href="/my-bookings" className="block py-2 text-base font-medium hover:text-primary">
+                                    My Bookings
+                                </Link>
+                                <button
+                                    onClick={() => signOut({ callbackUrl: "/" })}
+                                    className="block w-full text-left py-2 text-base font-medium text-red-500 hover:text-red-600"
+                                >
+                                    Sign Out
+                                </button>
+                                <div className="pt-2">
+                                    <Link href="/book-appointment" className="block w-full">
+                                        <Button className="w-full">Book Now</Button>
+                                    </Link>
                                 </div>
-                                <Link href="/book-appointment" onClick={() => setIsMobileMenuOpen(false)}>
-                                    <Button className="w-full py-6 text-lg">Book Now</Button>
-                                </Link>
-                            </div>
+                            </>
                         ) : (
-                            <div className="grid grid-cols-2 gap-4">
-                                <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                                    <button className="w-full py-3 text-sm font-bold text-primary border border-primary rounded-lg">
-                                        Login
-                                    </button>
+                            <>
+                                <Link href="/login" className="block py-2 text-base font-medium text-primary">
+                                    Login
                                 </Link>
-                                <Link href="/book-appointment" onClick={() => setIsMobileMenuOpen(false)}>
-                                    <Button className="w-full py-3 text-sm">Book Now</Button>
-                                </Link>
-                            </div>
+                                <div className="pt-2">
+                                    <Link href="/book-appointment" className="block w-full">
+                                        <Button className="w-full">Book Appointment</Button>
+                                    </Link>
+                                </div>
+                            </>
                         )}
                     </div>
                 </div>
-            </div>
+            )}
         </header>
     );
 }

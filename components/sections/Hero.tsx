@@ -11,32 +11,32 @@ export default function Hero() {
                             <span className="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
                             Accepting New Patients
                         </div>
-                        <h1 className="text-3xl font-black tracking-tight text-text-light dark:text-white sm:text-6xl mb-4 sm:mb-6 leading-tight">
+                        <h1 className="text-4xl font-black tracking-tight text-text-light dark:text-white sm:text-6xl mb-6 leading-tight">
                             Get Back to Moving <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Your Best.</span>
                         </h1>
-                        <p className="text-base sm:text-lg leading-relaxed sm:leading-8 text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">
+                        <p className="text-lg leading-8 text-gray-600 dark:text-gray-300 mb-8">
                             Expert physiotherapy care tailored to your recovery goals. Whether it's sports injury, post-op recovery, or chronic pain, we build the path to your wellness.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                            <Link href="/book-appointment" className="w-full sm:w-auto">
-                                <button className="w-full bg-primary text-white hover:bg-primary-dark rounded-xl px-8 py-4 text-base font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <Link href="/book-appointment">
+                                <button className="bg-primary text-white hover:bg-primary-dark rounded-lg px-6 py-3 text-base font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
                                     Book Your Assessment
                                 </button>
                             </Link>
-                            <Link href="/services" className="w-full sm:w-auto">
-                                <button className="w-full group flex items-center justify-center gap-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-surface-light dark:bg-surface-dark px-8 py-4 text-base font-semibold text-text-light dark:text-white transition-all hover:border-primary/50">
+                            <Link href="/services">
+                                <button className="group flex items-center justify-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-surface-light dark:bg-surface-dark px-6 py-3 text-base font-semibold text-text-light dark:text-white transition-all hover:border-primary/50">
                                     View Our Services
                                     <span className="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">arrow_forward</span>
                                 </button>
                             </Link>
                         </div>
-                        <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                        <div className="mt-8 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                             <div className="flex -space-x-2">
                                 <Image width={32} height={32} alt="Patient portrait" className="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-background-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj_XJsGz2wMrOc1vMVu3rmHfa-TNx3BqEkiuwOfnoNbMk_-Qn-QM3mVdvhSIq3CBC1uwN36iDFqiEGsVE_weI4ka2iAGYzSt4Ubs12_OnbD55fDcREylcDdgbVptNUgfkK98nmitGfgtBElkATdFlwltmtSOWdEFbFZ6igsoIgIncF9u5HJqIudLasQGuyn48J1rTZoMKf6v__ty8PXUWvbFEUdYs1tiyiLu9w9svzZxLH2B1bKKBseecDiIIJAVoj1Wl7wbXxwi1b" />
                                 <Image width={32} height={32} alt="Patient portrait" className="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-background-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcU5tm_SMrWxk24nCLkDofHVy1U9Yrz7BIVsKFC_-XfZNOaSkewsKO_8gkT5W4FofZuHiUZQSAudv4ulxi5CGRWnVLmLEUn2Vyuc0kaw4TwIqk3Bfc9jtcHCP1eP_SEkUmeTPHJ4rdVUIVNLO7jOUgVjuvTvqdjRSFn_adrqfMnJ-JR9qaM-tdC6dhXku1hmLIaqEMGp7qMLNKb6WHGZeYoy5EorxNNZaT-b2Y7LIrRLXxIUmnToJzOT30pLbR36jCkGo0lhwMsDug" />
                                 <Image width={32} height={32} alt="Patient portrait" className="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-background-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8m-DhoFukegZStXLxQeglcFLArTfbv9DKXnyfjQ6xcMluJ8F4rk8vNV8qwXp7f0obTHuItGEUhp1Ytw4z8ujwzv_BRPH3fLjPXDsfZkphXwyDUAOCcKwYy8mJtCuEpzSUFTtN1RQdrNgv7fSFS2XAjwzzrRD1G04syRayYydRz7QhozXILroLlInOTesGOsJ0vPxTxyKoZEHk5ZYOUWPmqnXLspP_ZKhAIHddNZrSuTXGk-Yvbw_ZQJvJBaqL6yUlSoXp4Hq-qBP7" />
                             </div>
-                            <p className="flex-1 min-w-[200px]">Trusted by 500+ patients this month</p>
+                            <p>Trusted by 500+ patients this month</p>
                         </div>
                     </div>
                     <div className="relative lg:h-full min-h-[300px] lg:w-[85%] mx-auto">
