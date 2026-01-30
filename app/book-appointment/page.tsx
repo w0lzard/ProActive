@@ -15,6 +15,29 @@ export default function BookAppointmentPage() {
         const today = new Date();
         return today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     });
+    const [viewDate, setViewDate] = useState(new Date());
+
+    const getDaysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate();
+    const getFirstDayOfMonth = (year: number, month: number) => new Date(year, month, 1).getDay();
+
+    const isPastDate = (day: number) => {
+        const date = new Date(viewDate.getFullYear(), viewDate.getMonth(), day);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return date < today;
+    };
+
+    const isToday = (day: number) => {
+        const today = new Date();
+        return day === today.getDate() &&
+            viewDate.getMonth() === today.getMonth() &&
+            viewDate.getFullYear() === today.getFullYear();
+    };
+
+    const handleDateSelect = (day: number) => {
+        const date = new Date(viewDate.getFullYear(), viewDate.getMonth(), day);
+        setSelectedDate(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }));
+    };
 
     // Form loading/error
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -193,27 +216,60 @@ export default function BookAppointmentPage() {
                             {/* Calendar (Static for visual) */}
                             <div className="w-full md:w-1/2">
                                 <div className="mb-4 flex items-center justify-between">
-                                    <h3 className="text-lg font-bold text-text-light dark:text-white">{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</h3>
+                                    <h3 className="text-lg font-bold text-text-light dark:text-white">
+                                        {viewDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                                    </h3>
                                     <div className="flex gap-2 text-text-light dark:text-white">
-                                        <button className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+                                        <button
+                                            onClick={() => setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1))}
+                                            disabled={viewDate.getMonth() === new Date().getMonth() && viewDate.getFullYear() === new Date().getFullYear()}
+                                            className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-background-light dark:hover:bg-background-dark transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                                        >
                                             <span className="material-symbols-outlined text-sm">chevron_left</span>
                                         </button>
-                                        <button className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+                                        <button
+                                            onClick={() => setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1))}
+                                            className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-background-light dark:hover:bg-background-dark transition-colors"
+                                        >
                                             <span className="material-symbols-outlined text-sm">chevron_right</span>
                                         </button>
                                     </div>
                                 </div>
-                                {/* Calendar Grid (Simplified) */}
-                                <div className="grid grid-cols-7 gap-1 text-center text-sm mb-2 text-gray-500">
+                                {/* Calendar Grid */}
+                                <div className="grid grid-cols-7 gap-1 text-center text-sm mb-2 text-gray-500 font-medium">
                                     <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
                                 </div>
-                                <div className="grid grid-cols-7 gap-1 text-center text-sm text-text-light dark:text-white">
-                                    <span className="py-2 text-gray-300">29</span><span className="py-2 text-gray-300">30</span>
-                                    {[...Array(31)].map((_, i) => (
-                                        <button key={i} className={`rounded-full py-2 hover:bg-background-light dark:hover:bg-background-dark ${i + 1 === 24 ? "bg-primary text-white font-bold shadow-md" : ""}`}>
-                                            {i + 1}
-                                        </button>
+                                <div className="grid grid-cols-7 gap-1 text-center text-sm">
+                                    {[...Array(getFirstDayOfMonth(viewDate.getFullYear(), viewDate.getMonth()))].map((_, i) => (
+                                        <span key={`empty-${i}`} className="py-2"></span>
                                     ))}
+                                    {[...Array(getDaysInMonth(viewDate.getFullYear(), viewDate.getMonth()))].map((_, i) => {
+                                        const day = i + 1;
+                                        const isPast = isPastDate(day);
+                                        const dateObj = new Date(viewDate.getFullYear(), viewDate.getMonth(), day);
+                                        const dateString = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                                        const isSelected = selectedDate === dateString;
+                                        const today = isToday(day);
+
+                                        return (
+                                            <button
+                                                key={day}
+                                                onClick={() => !isPast && handleDateSelect(day)}
+                                                disabled={isPast}
+                                                className={`relative rounded-full py-2 transition-all ${isSelected
+                                                        ? "bg-primary text-white font-bold shadow-md"
+                                                        : isPast
+                                                            ? "text-gray-200 dark:text-gray-700 cursor-not-allowed"
+                                                            : "hover:bg-background-light dark:hover:bg-background-dark text-text-light dark:text-white"
+                                                    }`}
+                                            >
+                                                {day}
+                                                {today && !isSelected && (
+                                                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"></span>
+                                                )}
+                                            </button>
+                                        );
+                                    })}
                                 </div>
                             </div>
 

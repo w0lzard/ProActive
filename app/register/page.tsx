@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -12,8 +12,67 @@ export default function RegisterPage() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    // Password strength states
+    const [strength, setStrength] = useState(0);
+    const [strengthLabel, setStrengthLabel] = useState("");
+    const [strengthColor, setStrengthColor] = useState("bg-gray-200");
+
+    const calculateStrength = (pass: string) => {
+        let score = 0;
+        if (!pass) return 0;
+
+        if (pass.length >= 8) score += 1;
+        if (/[A-Z]/.test(pass)) score += 1;
+        if (/[a-z]/.test(pass)) score += 1;
+        if (/[0-9]/.test(pass)) score += 1;
+        if (/[^A-Za-z0-9]/.test(pass)) score += 1;
+
+        return score;
+    };
+
+    useEffect(() => {
+        const score = calculateStrength(password);
+        setStrength(score);
+
+        switch (score) {
+            case 0:
+                setStrengthLabel("");
+                setStrengthColor("bg-gray-200");
+                break;
+            case 1:
+                setStrengthLabel("Very Weak");
+                setStrengthColor("bg-red-500");
+                break;
+            case 2:
+                setStrengthLabel("Weak");
+                setStrengthColor("bg-orange-500");
+                break;
+            case 3:
+                setStrengthLabel("Fair");
+                setStrengthColor("bg-yellow-500");
+                break;
+            case 4:
+                setStrengthLabel("Good");
+                setStrengthColor("bg-blue-500");
+                break;
+            case 5:
+                setStrengthLabel("Strong");
+                setStrengthColor("bg-green-500");
+                break;
+            default:
+                setStrengthLabel("");
+                setStrengthColor("bg-gray-200");
+        }
+    }, [password]);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (strength < 3) {
+            setError("Please choose a stronger password (at least 8 characters with numbers and letters)");
+            return;
+        }
+
         setLoading(true);
         setError("");
 
@@ -88,7 +147,7 @@ export default function RegisterPage() {
                                 placeholder="Email address"
                             />
                         </div>
-                        <div>
+                        <div className="space-y-2">
                             <label htmlFor="password" className="sr-only">
                                 Password
                             </label>
@@ -102,6 +161,27 @@ export default function RegisterPage() {
                                 className="relative block w-full rounded-md border-0 py-3 px-3 text-text-light dark:text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                                 placeholder="Password"
                             />
+
+                            {/* Password Strength Indicator */}
+                            {password && (
+                                <div className="space-y-1">
+                                    <div className="flex h-1.5 w-full gap-1 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
+                                        {[1, 2, 3, 4, 5].map((level) => (
+                                            <div
+                                                key={level}
+                                                className={`h-full flex-1 transition-all duration-300 ${strength >= level ? strengthColor : "bg-transparent"
+                                                    }`}
+                                            />
+                                        ))}
+                                    </div>
+                                    <div className="flex justify-between items-center">
+                                        <p className={`text-xs font-bold transition-colors duration-300`} style={{ color: strengthColor.replace('bg-', '') }}>
+                                            Strength: {strengthLabel}
+                                        </p>
+                                        <p className="text-[10px] text-gray-500">Min. 8 chars + numbers</p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
 
@@ -115,7 +195,7 @@ export default function RegisterPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="group relative flex w-full justify-center rounded-md bg-primary py-3 px-3 text-sm font-bold text-white hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+                            className="group relative flex w-full justify-center rounded-md bg-primary py-3 px-3 text-sm font-bold text-white hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-70 disabled:cursor-not-allowed transition-all shadow-lg shadow-primary/20"
                         >
                             {loading ? (
                                 <span className="flex items-center gap-2">

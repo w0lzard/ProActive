@@ -10,6 +10,17 @@ export async function POST(req: Request) {
     try {
         const body = await req.json();
         const { firstName, lastName, email, subject, message } = contactSchema.parse(body);
+
+        // Real Email Existence Check
+        const { validateEmailReal } = await import("@/lib/email-validator");
+        const emailCheck = await validateEmailReal(email);
+        if (!emailCheck.valid) {
+            return NextResponse.json(
+                { message: emailCheck.message },
+                { status: 400 }
+            );
+        }
+
         const id = uuidv4();
 
         const db = await getDB();

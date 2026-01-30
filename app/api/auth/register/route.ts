@@ -15,6 +15,16 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { name, email, password } = registerSchema.parse(body);
 
+        // Real Email Existence Check
+        const { validateEmailReal } = await import("@/lib/email-validator");
+        const emailCheck = await validateEmailReal(email);
+        if (!emailCheck.valid) {
+            return NextResponse.json(
+                { message: emailCheck.message },
+                { status: 400 }
+            );
+        }
+
         const db = await getDB();
 
         const existingUser = await db
